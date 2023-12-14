@@ -1,0 +1,841 @@
+import 'bloc/edit_profile_three_bloc.dart';
+import 'models/edit_profile_three_model.dart';
+import 'package:flutter/material.dart';
+import 'package:phat_s_application1/core/app_export.dart';
+import 'package:phat_s_application1/widgets/custom_icon_button.dart';
+import 'package:phat_s_application1/widgets/custom_outlined_button.dart';
+import 'package:phat_s_application1/widgets/custom_text_form_field.dart';
+
+class EditProfileThreeScreen extends StatelessWidget {
+  const EditProfileThreeScreen({Key? key})
+      : super(
+          key: key,
+        );
+
+  static Widget builder(BuildContext context) {
+    return BlocProvider<EditProfileThreeBloc>(
+      create: (context) => EditProfileThreeBloc(EditProfileThreeState(
+        editProfileThreeModelObj: EditProfileThreeModel(),
+      ))
+        ..add(EditProfileThreeInitialEvent()),
+      child: EditProfileThreeScreen(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    mediaQueryData = MediaQuery.of(context);
+
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: appTheme.gray100,
+        resizeToAvoidBottomInset: false,
+        body: SizedBox(
+          width: double.maxFinite,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: 12.h,
+                bottom: 98.v,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildHiconLinear(context),
+                  SizedBox(height: 14.v),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "lbl_edit_picture".tr,
+                      style: CustomTextStyles.titleSmallPrimary,
+                    ),
+                  ),
+                  SizedBox(height: 15.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 15.h),
+                    child: Text(
+                      "msg_basic_information".tr,
+                      style: CustomTextStyles.titleMediumLexendBold,
+                    ),
+                  ),
+                  SizedBox(height: 10.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 15.h),
+                    child: Text(
+                      "lbl_name".tr,
+                      style: theme.textTheme.labelLarge,
+                    ),
+                  ),
+                  SizedBox(height: 9.v),
+                  _buildName(context),
+                  SizedBox(height: 24.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 15.h),
+                    child: Text(
+                      "lbl_bio".tr,
+                      style: theme.textTheme.labelLarge,
+                    ),
+                  ),
+                  SizedBox(height: 10.v),
+                  _buildPlaceForRapAnd(context),
+                  SizedBox(height: 39.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 15.h),
+                    child: Text(
+                      "lbl_social_media".tr,
+                      style: CustomTextStyles.titleMediumLexendBold,
+                    ),
+                  ),
+                  SizedBox(height: 20.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 15.h),
+                    child: Row(
+                      children: [
+                        CustomIconButton(
+                          height: 36.adaptSize,
+                          width: 36.adaptSize,
+                          padding: EdgeInsets.all(8.h),
+                          decoration: IconButtonStyleHelper.outlinePrimaryTL4,
+                          child: CustomImageView(
+                            imagePath: ImageConstant.imgPhInstagramLogo,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10.h),
+                          child: CustomIconButton(
+                            height: 36.adaptSize,
+                            width: 36.adaptSize,
+                            padding: EdgeInsets.all(8.h),
+                            decoration: IconButtonStyleHelper.fillPrimary,
+                            child: CustomImageView(
+                              imagePath: ImageConstant.imgRiFacebookFill,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 9.h),
+                          child: CustomIconButton(
+                            height: 36.adaptSize,
+                            width: 36.adaptSize,
+                            padding: EdgeInsets.all(9.h),
+                            decoration: IconButtonStyleHelper.outlineGray,
+                            child: CustomImageView(
+                              imagePath: ImageConstant.imgSettings,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 41.v),
+                  _buildInstagramCom(context),
+                  SizedBox(height: 20.v),
+                  _buildRobbieprosekvalue1(context),
+                  SizedBox(height: 29.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 14.h),
+                    child: Text(
+                      "lbl_add_a_service".tr,
+                      style: CustomTextStyles.titleMediumLexendBold,
+                    ),
+                  ),
+                  SizedBox(height: 14.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 15.h),
+                    child: Text(
+                      "lbl_service_type".tr,
+                      style: theme.textTheme.labelLarge,
+                    ),
+                  ),
+                  SizedBox(height: 8.v),
+                  _buildVideoValue(context),
+                  SizedBox(height: 16.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 14.h),
+                    child: Text(
+                      "lbl_post_type".tr,
+                      style: theme.textTheme.labelLarge,
+                    ),
+                  ),
+                  SizedBox(height: 8.v),
+                  _buildStoryPostValue(context),
+                  SizedBox(height: 14.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 14.h),
+                    child: Text(
+                      "msg_duration_of_post2".tr,
+                      style: theme.textTheme.labelLarge,
+                    ),
+                  ),
+                  SizedBox(height: 10.v),
+                  _buildDuration1(context),
+                  SizedBox(height: 15.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 15.h),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(top: 1.v),
+                          child: Text(
+                            "lbl_length".tr,
+                            style: theme.textTheme.labelLarge,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 159.h),
+                          child: Text(
+                            "lbl_cost".tr,
+                            style: theme.textTheme.labelLarge,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 8.v),
+                  _buildDuration3(context),
+                  SizedBox(height: 24.v),
+                  _buildAddThisService(context),
+                  SizedBox(height: 38.v),
+                  Padding(
+                    padding: EdgeInsets.only(left: 15.h),
+                    child: Text(
+                      "lbl_my_services".tr,
+                      style: CustomTextStyles.titleMediumLexendBold,
+                    ),
+                  ),
+                  SizedBox(height: 18.v),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Divider(
+                      indent: 15.h,
+                      endIndent: 27.h,
+                    ),
+                  ),
+                  SizedBox(height: 9.v),
+                  _buildDeleteOne(context),
+                  SizedBox(height: 9.v),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Divider(
+                      indent: 15.h,
+                      endIndent: 27.h,
+                    ),
+                  ),
+                  SizedBox(height: 9.v),
+                  _buildDeleteTwo(context),
+                  SizedBox(height: 8.v),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Divider(
+                      indent: 15.h,
+                      endIndent: 27.h,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Section Widget
+  Widget _buildHiconLinear(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Opacity(
+          opacity: 0.6,
+          child: CustomImageView(
+            imagePath: ImageConstant.imgHiconLinear,
+            height: 28.adaptSize,
+            width: 28.adaptSize,
+            margin: EdgeInsets.only(
+              top: 28.v,
+              bottom: 251.v,
+            ),
+          ),
+        ),
+        Container(
+          height: 307.v,
+          width: 336.h,
+          margin: EdgeInsets.only(left: 52.h),
+          child: Stack(
+            alignment: Alignment.bottomLeft,
+            children: [
+              CustomImageView(
+                imagePath: ImageConstant.imgEllipse146,
+                height: 220.v,
+                width: 214.h,
+                alignment: Alignment.topRight,
+              ),
+              CustomImageView(
+                imagePath: ImageConstant.imgEllipse810243x243,
+                height: 243.adaptSize,
+                width: 243.adaptSize,
+                radius: BorderRadius.circular(
+                  121.h,
+                ),
+                alignment: Alignment.bottomLeft,
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: 80.h,
+                    top: 30.v,
+                  ),
+                  child: Text(
+                    "lbl_edit_profile".tr,
+                    style: theme.textTheme.titleMedium,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Section Widget
+  Widget _buildName(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        left: 15.h,
+        right: 27.h,
+      ),
+      child: BlocSelector<EditProfileThreeBloc, EditProfileThreeState,
+          TextEditingController?>(
+        selector: (state) => state.nameController,
+        builder: (context, nameController) {
+          return CustomTextFormField(
+            controller: nameController,
+            hintText: "lbl_robbie_prosek".tr,
+            alignment: Alignment.center,
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 14.h,
+              vertical: 17.v,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  /// Section Widget
+  Widget _buildPlaceForRapAnd(BuildContext context) {
+    return Align(
+      alignment: Alignment.center,
+      child: Container(
+        width: 374.h,
+        margin: EdgeInsets.only(
+          left: 15.h,
+          right: 27.h,
+        ),
+        padding: EdgeInsets.symmetric(
+          horizontal: 13.h,
+          vertical: 16.v,
+        ),
+        decoration: AppDecoration.outlineGray.copyWith(
+          borderRadius: BorderRadiusStyle.roundedBorder7,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 86.v),
+            SizedBox(
+              width: 230.h,
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: "msg_place_for_rap_and2".tr,
+                      style: CustomTextStyles.bodyLargeInterRegular,
+                    ),
+                    TextSpan(
+                      text: "msg_music_rap_hiphop".tr,
+                      style: CustomTextStyles.bodyLargeInterRegular,
+                    ),
+                  ],
+                ),
+                textAlign: TextAlign.left,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Section Widget
+  Widget _buildInstagramCom(BuildContext context) {
+    return Align(
+      alignment: Alignment.center,
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: 15.h,
+          right: 27.h,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                top: 19.v,
+                bottom: 15.v,
+              ),
+              child: Text(
+                "lbl_instagram_com".tr,
+                style: theme.textTheme.bodyLarge,
+              ),
+            ),
+            Container(
+              width: 235.h,
+              margin: EdgeInsets.only(left: 16.h),
+              padding: EdgeInsets.symmetric(
+                horizontal: 10.h,
+                vertical: 15.v,
+              ),
+              decoration: AppDecoration.outlineGray.copyWith(
+                borderRadius: BorderRadiusStyle.roundedBorder7,
+              ),
+              child: Text(
+                "lbl_robbieprosek3".tr,
+                style: theme.textTheme.bodyLarge,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Section Widget
+  Widget _buildRobbieprosekvalue(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 22.h),
+      child: BlocSelector<EditProfileThreeBloc, EditProfileThreeState,
+          TextEditingController?>(
+        selector: (state) => state.robbieprosekvalueController,
+        builder: (context, robbieprosekvalueController) {
+          return CustomTextFormField(
+            width: 235.h,
+            controller: robbieprosekvalueController,
+            hintText: "lbl_robbieprosek3".tr,
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 10.h,
+              vertical: 17.v,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  /// Section Widget
+  Widget _buildRobbieprosekvalue1(BuildContext context) {
+    return Align(
+      alignment: Alignment.center,
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: 15.h,
+          right: 27.h,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                top: 19.v,
+                bottom: 15.v,
+              ),
+              child: Text(
+                "lbl_facebook_com".tr,
+                style: theme.textTheme.bodyLarge,
+              ),
+            ),
+            _buildRobbieprosekvalue(context),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Section Widget
+  Widget _buildVideoValue(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        left: 15.h,
+        right: 27.h,
+      ),
+      child: BlocSelector<EditProfileThreeBloc, EditProfileThreeState,
+          TextEditingController?>(
+        selector: (state) => state.videoValueController,
+        builder: (context, videoValueController) {
+          return CustomTextFormField(
+            controller: videoValueController,
+            hintText: "lbl_video".tr,
+            alignment: Alignment.center,
+            suffix: Container(
+              margin: EdgeInsets.fromLTRB(30.h, 14.v, 10.h, 13.v),
+              child: CustomImageView(
+                imagePath: ImageConstant.imgHiconLinearLeft3,
+                height: 28.adaptSize,
+                width: 28.adaptSize,
+              ),
+            ),
+            suffixConstraints: BoxConstraints(
+              maxHeight: 55.v,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  /// Section Widget
+  Widget _buildStoryPostValue(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        left: 14.h,
+        right: 27.h,
+      ),
+      child: BlocSelector<EditProfileThreeBloc, EditProfileThreeState,
+          TextEditingController?>(
+        selector: (state) => state.storyPostValueController,
+        builder: (context, storyPostValueController) {
+          return CustomTextFormField(
+            controller: storyPostValueController,
+            hintText: "lbl_story_post".tr,
+            suffix: Container(
+              margin: EdgeInsets.fromLTRB(30.h, 14.v, 10.h, 13.v),
+              child: CustomImageView(
+                imagePath: ImageConstant.imgHiconLinearLeft3,
+                height: 28.adaptSize,
+                width: 28.adaptSize,
+              ),
+            ),
+            suffixConstraints: BoxConstraints(
+              maxHeight: 55.v,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  /// Section Widget
+  Widget _buildDuration(BuildContext context) {
+    return BlocSelector<EditProfileThreeBloc, EditProfileThreeState,
+        TextEditingController?>(
+      selector: (state) => state.durationController,
+      builder: (context, durationController) {
+        return CustomTextFormField(
+          width: 374.h,
+          controller: durationController,
+          hintText: "lbl_24_hours".tr,
+          alignment: Alignment.topCenter,
+          suffix: Container(
+            margin: EdgeInsets.fromLTRB(30.h, 14.v, 10.h, 13.v),
+            child: CustomImageView(
+              imagePath: ImageConstant.imgHiconLinearLeft3,
+              height: 28.adaptSize,
+              width: 28.adaptSize,
+            ),
+          ),
+          suffixConstraints: BoxConstraints(
+            maxHeight: 55.v,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Section Widget
+  Widget _buildDuration1(BuildContext context) {
+    return Container(
+      height: 263.v,
+      width: 374.h,
+      margin: EdgeInsets.only(left: 14.h),
+      child: Stack(
+        alignment: Alignment.topLeft,
+        children: [
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 9.h,
+                vertical: 6.v,
+              ),
+              decoration: AppDecoration.outlineGray.copyWith(
+                borderRadius: BorderRadiusStyle.roundedBorder7,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(height: 10.v),
+                  Container(
+                    width: 317.h,
+                    margin: EdgeInsets.only(
+                      left: 4.h,
+                      right: 32.h,
+                    ),
+                    child: Text(
+                      "msg_lorem_ipsum_dolor".tr,
+                      maxLines: 6,
+                      overflow: TextOverflow.ellipsis,
+                      style: CustomTextStyles.bodyLargeInter,
+                    ),
+                  ),
+                  SizedBox(height: 13.v),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Opacity(
+                      opacity: 0.5,
+                      child: Text(
+                        "lbl_250_500".tr,
+                        style: CustomTextStyles.bodySmallInter_1,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: EdgeInsets.only(top: 71.v),
+              child: Text(
+                "lbl_description".tr,
+                style: theme.textTheme.labelLarge,
+              ),
+            ),
+          ),
+          _buildDuration(context),
+          Align(
+            alignment: Alignment.topRight,
+            child: Container(
+              margin: EdgeInsets.only(
+                top: 39.v,
+                right: 9.h,
+              ),
+              padding: EdgeInsets.symmetric(
+                horizontal: 13.h,
+                vertical: 18.v,
+              ),
+              decoration: AppDecoration.outlineBlack900,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "lbl_12_hours".tr,
+                    style: theme.textTheme.bodyLarge,
+                  ),
+                  SizedBox(height: 15.v),
+                  Text(
+                    "lbl_24_hours".tr,
+                    style: theme.textTheme.bodyLarge,
+                  ),
+                  SizedBox(height: 16.v),
+                  Text(
+                    "lbl_3_days".tr,
+                    style: theme.textTheme.bodyLarge,
+                  ),
+                  SizedBox(height: 13.v),
+                  Text(
+                    "lbl_1_week".tr,
+                    style: theme.textTheme.bodyLarge,
+                  ),
+                  SizedBox(height: 8.v),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Section Widget
+  Widget _buildDuration2(BuildContext context) {
+    return Expanded(
+      child: Padding(
+        padding: EdgeInsets.only(right: 15.h),
+        child: BlocSelector<EditProfileThreeBloc, EditProfileThreeState,
+            TextEditingController?>(
+          selector: (state) => state.durationController1,
+          builder: (context, durationController1) {
+            return CustomTextFormField(
+              controller: durationController1,
+              hintText: "lbl_15_seconds".tr,
+              suffix: Container(
+                margin: EdgeInsets.fromLTRB(30.h, 14.v, 11.h, 13.v),
+                child: CustomImageView(
+                  imagePath: ImageConstant.imgHiconLinearLeft3,
+                  height: 28.adaptSize,
+                  width: 28.adaptSize,
+                ),
+              ),
+              suffixConstraints: BoxConstraints(
+                maxHeight: 55.v,
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  /// Section Widget
+  Widget _buildPrice(BuildContext context) {
+    return Expanded(
+      child: Padding(
+        padding: EdgeInsets.only(left: 15.h),
+        child: BlocSelector<EditProfileThreeBloc, EditProfileThreeState,
+            TextEditingController?>(
+          selector: (state) => state.priceController,
+          builder: (context, priceController) {
+            return CustomTextFormField(
+              controller: priceController,
+              hintText: "lbl_4002".tr,
+              textInputAction: TextInputAction.done,
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 14.h,
+                vertical: 17.v,
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  /// Section Widget
+  Widget _buildDuration3(BuildContext context) {
+    return Align(
+      alignment: Alignment.center,
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: 15.h,
+          right: 27.h,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _buildDuration2(context),
+            _buildPrice(context),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Section Widget
+  Widget _buildAddThisService(BuildContext context) {
+    return CustomOutlinedButton(
+      text: "msg_add_this_service".tr,
+      margin: EdgeInsets.only(
+        left: 15.h,
+        right: 27.h,
+      ),
+      buttonStyle: CustomButtonStyles.outlinePrimary,
+      alignment: Alignment.center,
+    );
+  }
+
+  /// Section Widget
+  Widget _buildDeleteOne(BuildContext context) {
+    return Align(
+      alignment: Alignment.center,
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: 20.h,
+          right: 27.h,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomImageView(
+              imagePath: ImageConstant.img001Delete1,
+              height: 18.adaptSize,
+              width: 18.adaptSize,
+            ),
+            Spacer(
+              flex: 23,
+            ),
+            Text(
+              "lbl_video".tr,
+              style: theme.textTheme.bodyLarge,
+            ),
+            Spacer(
+              flex: 38,
+            ),
+            Text(
+              "lbl_30_seconds".tr,
+              style: theme.textTheme.bodyLarge,
+            ),
+            Spacer(
+              flex: 38,
+            ),
+            Text(
+              "lbl_750".tr,
+              style: theme.textTheme.bodyLarge,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Section Widget
+  Widget _buildDeleteTwo(BuildContext context) {
+    return Align(
+      alignment: Alignment.center,
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: 20.h,
+          right: 26.h,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomImageView(
+              imagePath: ImageConstant.img001Delete1,
+              height: 18.adaptSize,
+              width: 18.adaptSize,
+              margin: EdgeInsets.only(bottom: 2.v),
+            ),
+            Spacer(
+              flex: 16,
+            ),
+            Text(
+              "lbl_photo".tr,
+              style: theme.textTheme.bodyLarge,
+            ),
+            Spacer(
+              flex: 41,
+            ),
+            Text(
+              "lbl".tr,
+              style: theme.textTheme.bodyLarge,
+            ),
+            Spacer(
+              flex: 41,
+            ),
+            Text(
+              "lbl_250".tr,
+              style: theme.textTheme.bodyLarge,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
